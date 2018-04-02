@@ -84,8 +84,8 @@ void CheckCommandLineArguments(CommandLineArguments& commandLineArguments)
 std::unique_ptr<PhaseVocoderMediator> GetPhaseVocoderMediator(const CommandLineArguments& commandLineArguments)
 {
 	PhaseVocoderSettings phaseVocoderSettings;
-	phaseVocoderSettings.SetInputWaveFile("/PhaseVocoder-Emscripten/assets/drum-loop.wav");	
-	phaseVocoderSettings.SetOutputWaveFile("/PhaseVocoder-Emscripten/assets/output.wav");
+	phaseVocoderSettings.SetInputWaveFile("/in.wav");	
+	phaseVocoderSettings.SetOutputWaveFile("/out.wav");
 	phaseVocoderSettings.SetStretchFactor(2);
 
 	/*
