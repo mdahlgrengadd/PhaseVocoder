@@ -44,7 +44,7 @@ int PerformPhaseVocoding(CommandLineArguments& commandLineArguments);
 void DisplayTransients(const std::unique_ptr<PhaseVocoderMediator>& phaseVocoderMediator);
 void DisplayAllTransientsOnChannel(const std::vector<std::size_t>& transients);
 
-int main(int argc, char* argv[])
+extern "C" int mainf(int argc, char* argv[])
 {
 	CommandLineArguments commandLineArguments(argc, argv);
 
@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
 }
 
 void CheckCommandLineArguments(CommandLineArguments& commandLineArguments)
-{
+{/*
 	if(!commandLineArguments.IsValid())
 	{
 		std::cout << commandLineArguments.GetErrorMessage() << std::endl;
@@ -78,13 +78,17 @@ void CheckCommandLineArguments(CommandLineArguments& commandLineArguments)
 	{
 		DisplayVersion();
 		exit(SUCCESS);
-	}
+	}*/
 }
 
 std::unique_ptr<PhaseVocoderMediator> GetPhaseVocoderMediator(const CommandLineArguments& commandLineArguments)
 {
 	PhaseVocoderSettings phaseVocoderSettings;
+	phaseVocoderSettings.SetInputWaveFile("/PhaseVocoder-Emscripten/assets/drum-loop.wav");	
+	phaseVocoderSettings.SetOutputWaveFile("/PhaseVocoder-Emscripten/assets/output.wav");
+	phaseVocoderSettings.SetStretchFactor(2);
 
+	/*
 	if(commandLineArguments.InputFilenameGiven())
 	{
 		phaseVocoderSettings.SetInputWaveFile(commandLineArguments.GetInputFilename());	
@@ -124,7 +128,7 @@ std::unique_ptr<PhaseVocoderMediator> GetPhaseVocoderMediator(const CommandLineA
 	{
 		phaseVocoderSettings.SetDisplayTransients();
 	}
-
+*/
 	return std::unique_ptr<PhaseVocoderMediator>{new PhaseVocoderMediator(phaseVocoderSettings)};
 }
 
