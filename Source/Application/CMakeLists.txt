@@ -11,7 +11,7 @@ if(BUILD_NUMBER)
 endif(BUILD_NUMBER)
 
 include_directories("${PROJECT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/audiolib-src/Source")
-#include_directories("${PROJECT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/yamlcpp-src/include")
+include_directories("${PROJECT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/yamlcpp-src/include")
 
 file(GLOB source_files [^.]*.h [^.]*.cpp)
 find_package(Threads)
