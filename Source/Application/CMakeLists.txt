@@ -20,6 +20,6 @@ include(${PROJECT_SOURCE_DIR}/CMakeSupport/CMakeLists.CompilerSettings.txt)
 target_link_libraries(PhaseVocoder AudioData Signal ThreadSafeAudioFile Utilities WaveFile yaml-cpp ${CMAKE_THREAD_LIBS_INIT})
 set_target_properties(PhaseVocoder PROPERTIES FOLDER Apps)
 
-add_subdirectory(UT)
+#add_subdirectory(UT)
 
 
