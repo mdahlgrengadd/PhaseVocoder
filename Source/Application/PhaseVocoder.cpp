@@ -152,7 +152,7 @@ int PerformPhaseVocoding(CommandLineArguments& commandLineArguments)
 		
 		std::cout << std::endl;  // Newline so prompt displays below output
 	}
-	catch(Utilities::Exception& exception)
+	catch(const std::exception& exception)
 	{
 		std::cerr << "Error: " << exception.what() << std::endl;
 		return FAILURE;
