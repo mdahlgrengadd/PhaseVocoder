@@ -77,11 +77,13 @@ void PhaseVocoderMediator::Process()
 		PhaseVocoderProcessor leftChannelProcessor(0, settings_, audioFileReader_, audioFileWriter_);
 		PhaseVocoderProcessor rightChannelProcessor(1, settings_, audioFileReader_, audioFileWriter_);
 	
-		auto leftChannelThread{std::thread([&]{leftChannelProcessor.Process();})};
-		auto rightChannelThread{std::thread([&]{rightChannelProcessor.Process();})};
+		//auto leftChannelThread{std::thread([&]
+		leftChannelProcessor.Process();
+		//auto rightChannelThread{std::thread([&]
+		rightChannelProcessor.Process();
 
-		leftChannelThread.join();
-		rightChannelThread.join();
+		//leftChannelThread.join();
+		//rightChannelThread.join();
 
 		transients_.push_back(leftChannelProcessor.GetTransients());
 		transients_.push_back(rightChannelProcessor.GetTransients());
