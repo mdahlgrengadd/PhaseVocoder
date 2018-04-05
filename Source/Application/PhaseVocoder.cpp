@@ -56,9 +56,9 @@ extern "C" int mainloop(int argc, char* argv[])
 	return PerformPhaseVocoding(commandLineArguments);
 }*/
 
-void callback() {
+extern "C" int  mainf(int argc_, char* argv_[]) {
   try {
-std::vector<std::string> arguments = {"--dir", "/some_path"};
+std::vector<std::string> arguments = {"-i", "/input.wav"};
 
 std::vector<char*> argv;
 for (const auto& arg : arguments)
@@ -77,10 +77,6 @@ argv.push_back(nullptr);
   } catch(...) {
     std::cout << "Uncaught unknown exception!\n";
   }
-}
-
-extern "C" int mainf(int argc, char* argv[]) {
-    emscripten_set_main_loop(callback, 0, 0);
 }
 
 void CheckCommandLineArguments(CommandLineArguments& commandLineArguments)
