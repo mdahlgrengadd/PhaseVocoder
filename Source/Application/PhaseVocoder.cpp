@@ -35,6 +35,9 @@
 #include <Application/CommandLineArguments.h>
 #include <Application/Usage.h>
 
+#include <emscripten.h>
+
+
 const uint32_t SUCCESS{0};
 const uint32_t FAILURE{1};
 
@@ -44,12 +47,40 @@ int PerformPhaseVocoding(CommandLineArguments& commandLineArguments);
 void DisplayTransients(const std::unique_ptr<PhaseVocoderMediator>& phaseVocoderMediator);
 void DisplayAllTransientsOnChannel(const std::vector<std::size_t>& transients);
 
-extern "C" int mainf(int argc, char* argv[])
+/*
+extern "C" int mainloop(int argc, char* argv[])
 {
 	CommandLineArguments commandLineArguments(argc, argv);
 
 	CheckCommandLineArguments(commandLineArguments);
 	return PerformPhaseVocoding(commandLineArguments);
+}*/
+
+void callback() {
+  try {
+std::vector<std::string> arguments = {"--dir", "/some_path"};
+
+std::vector<char*> argv;
+for (const auto& arg : arguments)
+    argv.push_back((char*)arg.data());
+argv.push_back(nullptr);
+
+
+
+	CommandLineArguments commandLineArguments(argv.size()-1, argv.data());
+
+	CheckCommandLineArguments(commandLineArguments);
+	 PerformPhaseVocoding(commandLineArguments);
+
+  } catch(const std::exception &e) {
+    std::cout << "Uncaught exception " << e.what() << "!\n";
+  } catch(...) {
+    std::cout << "Uncaught unknown exception!\n";
+  }
+}
+
+extern "C" int mainf(int argc, char* argv[]) {
+    emscripten_set_main_loop(callback, 0, 0);
 }
 
 void CheckCommandLineArguments(CommandLineArguments& commandLineArguments)
