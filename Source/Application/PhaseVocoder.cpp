@@ -58,24 +58,27 @@ extern "C" int mainloop(int argc, char* argv[])
 
 extern "C" int  mainf(int argc_, char* argv_[]) {
   try {
+	  /*
 std::vector<std::string> arguments = {"-i", "/input.wav"};
 
 std::vector<char*> argv;
 for (const auto& arg : arguments)
     argv.push_back((char*)arg.data());
 argv.push_back(nullptr);
+*/
 
 
-
-	CommandLineArguments commandLineArguments(argv.size()-1, argv.data());
+	CommandLineArguments commandLineArguments(argc_, argv_);
 
 	CheckCommandLineArguments(commandLineArguments);
-	 PerformPhaseVocoding(commandLineArguments);
+	 return PerformPhaseVocoding(commandLineArguments);
 
   } catch(const std::exception &e) {
     std::cout << "Uncaught exception " << e.what() << "!\n";
+	return 0;
   } catch(...) {
     std::cout << "Uncaught unknown exception!\n";
+	return 0;
   }
 }
 
