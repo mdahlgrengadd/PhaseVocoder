@@ -1,7 +1,7 @@
 PhaseVocoder-Emscripten 
 =======================
 
-Small changes to allow for compiling with emscripten. 
+Very small changes to allow for compiling with emscripten. 
 
 [https://github.com/tmdarwen/PhaseVocoder](PhaseVocoder)
 
